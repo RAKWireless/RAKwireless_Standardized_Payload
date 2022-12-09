@@ -78,7 +78,7 @@ The content of the packet depends on the WisBlock example or RAKwireless device 
 
 ### _REMARK_
 Channel ID's marked with <sup>_**1)**_</sup> are extensions to the default Cayenne LPP format and need an extended decoder.    
-Channel ID's marked with <sup>_**2)**_</sup> are extensions to the default Cayenne LPP format and need an extended decoder. In addition these data types cannot be generated with the CayenneLPP library, they need an extension to the library. The source code for the extensions are in the ext folder. The code for this extension can be found in the [ext](./ext) folder.     
+Channel ID's marked with <sup>_**2)**_</sup> are extensions to the default Cayenne LPP format and need an extended decoder. In addition these data types cannot be generated with the CayenneLPP library, they need an extension to the library. The source code for this extension can be found in the [ext](./ext) folder.     
 
 ### _REMARK_
 A decoders for TTN, Chirpstack, Helium and Datacake can be found in the folder [decoders](./decoders)    
