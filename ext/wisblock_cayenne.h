@@ -76,6 +76,11 @@
 #define LPP_CHANNEL_EQ_SHUTOFF 46	   // RAK12027
 #define LPP_CHANNEL_EQ_COLLAPSE 47	   // RAK12027
 #define LPP_CHANNEL_SWITCH 48		   // RAK13011
+#define LPP_CHANNEL_WIND_SPEED 49	   // SensorHub RK900-09
+#define LPP_CHANNEL_WIND_DIR 50		   // SensorHub RK900-09
+#define LPP_CHANNEL_AUDIO_LEVEL 51	   // WisBlock Audio
+#define LPP_CHANNEL_AUDIO_ALARM 52	   // WisBlock Audio
+#define LPP_CHANNEL_AUDIO_TYPE 53	   // WisBlock Audio
 
 class WisCayenne : public CayenneLPP
 {

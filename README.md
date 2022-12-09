@@ -81,7 +81,7 @@ Channel ID's marked with <sup>_**1)**_</sup> are extensions to the default Cayen
 Channel ID's marked with <sup>_**2)**_</sup> are extensions to the default Cayenne LPP format and need an extended decoder. In addition these data types cannot be generated with the CayenneLPP library, they need an extension to the library. The source code for this extension can be found in the [ext](./ext) folder.     
 
 ### _REMARK_
-A decoders for TTN, Chirpstack, Helium and Datacake can be found in the folder [decoders](./decoders)    
+A decoder for TTN, Chirpstack, Helium and Datacake can be found in the folder [decoders](./decoders)    
 The decoder returns the decoded data as an array. The used named for the sensor values are listed in the column _**Decoded Field Name**_.    
 As much as possible standard Cayenne LPP formats are used.
 
@@ -89,7 +89,7 @@ As much as possible standard Cayenne LPP formats are used.
 
 # How to format the LoRaWAN payload
 
-When writing application code using the Arduino framework (or alternative PlatformIO where applicable), the [ElectronicCats library _**CayenneLPP**_](https://github.com/ElectronicCats/CayenneLPP) can be used. For some WisBlock specific data types in addition the WisCayenne extension of the ElectronicCats CayenneLPP library is required. The WisCayenne class is included in the [WisBlock-API](https://github.com/beegee-tokyo/WisBlock-API).
+When writing application code using the Arduino framework (or alternative PlatformIO where applicable), the [ElectronicCats library _**CayenneLPP**_](https://github.com/ElectronicCats/CayenneLPP) can be used. For some WisBlock specific data types in addition the WisCayenne extension of the ElectronicCats CayenneLPP library is required. The WisCayenne class files can be found in the [ext](./ext) folder.     
 
 The examples are kept as simple as possible, just showing the initialization and how to add values to the payload.    
 The channel numbers are defined in a separate header file for both examples.    
