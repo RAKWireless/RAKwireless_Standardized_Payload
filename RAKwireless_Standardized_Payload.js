@@ -61,7 +61,7 @@ function lppDecode(bytes) {
 		101: { 'size': 2, 'name': 'illuminance', 'signed': false, 'divisor': 1 },
 		102: { 'size': 1, 'name': 'presence', 'signed': false, 'divisor': 1 },
 		103: { 'size': 2, 'name': 'temperature', 'signed': true, 'divisor': 10 },
-		104: { 'size': 2, 'name': 'humidity', 'signed': false, 'divisor': 20 },
+		104: { 'size': 1, 'name': 'humidity', 'signed': false, 'divisor': 2 },
 		113: { 'size': 6, 'name': 'accelerometer', 'signed': true, 'divisor': 1000 },
 		115: { 'size': 2, 'name': 'barometer', 'signed': false, 'divisor': 10 },
 		116: { 'size': 2, 'name': 'voltage', 'signed': false, 'divisor': 100 },
