@@ -72,9 +72,10 @@ The content of the packet depends on the WisBlock example or RAKwireless device 
 | Switch Status            | 48        | 102                      | 1 byte   | bool                                              | WisBlock RAK13011           | presence_48        |
 | SensorHub Wind Speed     | 49        | _**190**_ <sup>1)</sup>  | 2 byte   | 0.01 m/s                                          | SensorHub RK900-09          | wind_speed_49      |
 | SensorHub Wind Direction | 50        | _**191**_ <sup>1)</sup>  | 2 byte   | 1º                                                | SensorHub RK900-09          | wind_direction_50  |
-| Audio level              | 51        | 2                        | 2 bytes  | 0.01 dB                                           | WisBlock Audio              | analog_51          |
-| Audio alarm              | 52        | 102                      | 1 bytes  | bool                                              | WisBlock Audio              | presence_52        |
-| Detected sound type      | 53        | 1                        | 1 bytes  | 0 - 255                                           | WisBlock Audio              | digital_out_53     |
+| Audio level A weighting  | 51        | 2                        | 2 bytes  | 0.01 dB                                           | WisBlock Audio              | analog_51          |
+| Audio level C weighting  | 52        | 2                        | 2 bytes  | 0.01 dB                                           | WisBlock Audio              | analog_52          |
+| Audio alarm              | 53        | 102                      | 1 bytes  | bool                                              | WisBlock Audio              | presence_53        |
+| Detected sound type      | 54        | 1                        | 1 bytes  | 0 - 255                                           | WisBlock Audio              | digital_out_54     |
 
 ### _REMARK_
 Channel ID's marked with <sup>_**1)**_</sup> are extensions to the default Cayenne LPP format and need an extended decoder.    
@@ -149,9 +150,10 @@ There are two examples, one using the CayenneLPP library and a second example us
 #define LPP_CHANNEL_SWITCH 48		   // RAK13011
 #define LPP_CHANNEL_WIND_SPEED 49	   // SensorHub RK900-09
 #define LPP_CHANNEL_WIND_DIR 50		   // SensorHub RK900-09
-#define LPP_CHANNEL_AUDIO_LEVEL 51	   // WisBlock Audio
-#define LPP_CHANNEL_AUDIO_ALARM 52	   // WisBlock Audio
-#define LPP_CHANNEL_AUDIO_TYPE 53	   // WisBlock Audio
+#define LPP_CHANNEL_AUDIO_LEVEL_A 51	   // WisBlock Audio
+#define LPP_CHANNEL_AUDIO_LEVEL_C 52	   // WisBlock Audio
+#define LPP_CHANNEL_AUDIO_ALARM 53	   // WisBlock Audio
+#define LPP_CHANNEL_AUDIO_TYPE 54	   // WisBlock Audio
 
 ```
 
