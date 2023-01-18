@@ -61,9 +61,9 @@ The content of the packet depends on the WisBlock example or RAKwireless device 
 | SCD30 humidity           | 37        | 104                      | 1 byte   | in %RH                                            | WisBlock RAK12037           | humidity_37        |
 | MLX90632 sensor temp     | 38        | 103                      | 2 bytes  | in °C                                             | WisBlock RAK12003           | temperature_38     |
 | MLX90632 object temp     | 39        | 103                      | 2 bytes  | in °C                                             | WisBlock RAK12003           | temperature_39     |
-| PM 1.0 value             | 40        | 103                      | 2 bytes  | in ug/m3                                          | WisBlock RAK12003           | voc_40             |
-| PM 2.5 value             | 41        | 103                      | 2 bytes  | in ug/m3                                          | WisBlock RAK12003           | voc_41             |
-| PM 10 value              | 42        | 103                      | 2 bytes  | in ug/m3                                          | WisBlock RAK12003           | voc_42             |
+| PM 1.0 value             | 40        | 103                      | 2 bytes  | in ug/m3                                          | WisBlock RAK12039           | voc_40             |
+| PM 2.5 value             | 41        | 103                      | 2 bytes  | in ug/m3                                          | WisBlock RAK12039           | voc_41             |
+| PM 10 value              | 42        | 103                      | 2 bytes  | in ug/m3                                          | WisBlock RAK12039           | voc_42             |
 | Earthquake event         | 43        | 102                      | 1 byte   | bool                                              | WisBlock RAK12027           | presence_43        |
 | Earthquake SI value      | 44        | 2                        | 2 bytes  | analog 10 * m/s                                   | WisBlock RAK12027           | analog_44          |
 | Earthquake PGA value     | 45        | 2                        | 2 bytes  | analog 10 * m/s2                                  | WisBlock RAK12027           | analog_45          |
