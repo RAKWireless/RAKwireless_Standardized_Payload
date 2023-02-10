@@ -153,12 +153,17 @@ There are two examples, one using the CayenneLPP library and a second example us
 #define LPP_CHANNEL_EQ_SHUTOFF 46	   // RAK12027
 #define LPP_CHANNEL_EQ_COLLAPSE 47	   // RAK12027
 #define LPP_CHANNEL_SWITCH 48		   // RAK13011
-#define LPP_CHANNEL_WIND_SPEED 49	   // SensorHub RK900-09
-#define LPP_CHANNEL_WIND_DIR 50		   // SensorHub RK900-09
-#define LPP_CHANNEL_AUDIO_LEVEL_A 51	   // WisBlock Audio
-#define LPP_CHANNEL_AUDIO_LEVEL_C 52	   // WisBlock Audio
+#define LPP_SH_WS 49	               // SensorHub RK900-09
+#define LPP_SH_WD 50                   // SensorHub RK900-09
+#define LPP_CHANNEL_AUDIO_LEVEL_A 51   // WisBlock Audio
+#define LPP_CHANNEL_AUDIO_LEVEL_C 52   // WisBlock Audio
 #define LPP_CHANNEL_AUDIO_ALARM 53	   // WisBlock Audio
 #define LPP_CHANNEL_AUDIO_TYPE 54	   // WisBlock Audio
+#define LPP_SH_SOIL_MOIST 55		   // SensorHub RK500-02
+#define LPP_SH_EC 56				   // SensorHub RK500-02
+#define LPP_SH_PH_H 57				   // SensorHub RK500-02
+#define LPP_SH_PH_L 58				   // SensorHub RK500-02
+#define LPP_SH_PYRANO 59			   // SensorHub RK200-03
 
 ```
 
