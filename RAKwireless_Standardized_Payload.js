@@ -45,6 +45,11 @@
  *  Wind Speed          3390    190     BE      2           Wind speed 0.01 m/s
  *  Wind Direction      3391    191     BF      2           Wind direction 1º Unsigned MSB
  *  Light Level         3403    203     CB      1           0 0-5 lux, 1 6-50 lux, 2 51-100 lux, 3 101-500 lux, 4 501-2000 lux, 6 >2000 lux
+ *  Soil Moisture       3388    188     BC      2           0.1 % in 0~100% (m3/m3)
+ *  Soil EC             3392    192     C0      2           0.001, mS/cm
+ *  Soil pH high prec.  3393    193     C1      2           0.01 pH
+ *  Soil pH low prec.   3394    194     C2      2           0.1 pH
+ *  Pyranometer         3395    195     C3      2           1 unsigned MSB (W/m2)
  * 
  */
 
@@ -81,8 +86,13 @@ function lppDecode(bytes) {
 		137: { 'size': 11, 'name': 'gps', 'signed': true, 'divisor': [1000000, 1000000, 100] },
 		138: { 'size': 2, 'name': 'voc', 'signed': false, 'divisor': 1 },
 		142: { 'size': 1, 'name': 'switch', 'signed': false, 'divisor': 1 },
+		188: { 'size': 2, 'name': 'soil_moist', 'signed': false, 'divisor': 10 },
 		190: { 'size': 2, 'name': 'wind_speed', 'signed': false, 'divisor': 100 },
 		191: { 'size': 2, 'name': 'wind_direction', 'signed': false, 'divisor': 1 },
+		192: { 'size': 2, 'name': 'soil_ec', 'signed': false, 'divisor': 1000 },
+		193: { 'size': 2, 'name': 'soil_ph_h', 'signed': false, 'divisor': 100 },
+		194: { 'size': 2, 'name': 'soil_ph_l', 'signed': false, 'divisor': 10 },
+		195: { 'size': 2, 'name': 'pyranometer', 'signed': false, 'divisor': 1 },
 		203: { 'size': 1, 'name': 'light', 'signed': false, 'divisor': 1 },
 	};
 

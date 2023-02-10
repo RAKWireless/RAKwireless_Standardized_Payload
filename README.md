@@ -19,63 +19,68 @@ It works with Chirpstack, TheThingsNetwork, Helium LoRaWAN servers and the Datac
 The packet data is made compatible with the extended Cayenne LPP encoding from [ElectronicCats/CayenneLPP](https://github.com/ElectronicCats/CayenneLPP) ⤴️.    
 The content of the packet depends on the WisBlock example or RAKwireless device like the SensorHub :     
 
-| Data                     | Channel # | Channel ID               | Length   | Comment                                           | Device                      | Decoded Field Name |
-| --                       | --        | --                       | --       | --                                                | --                          | --                 |
-| Battery value            | 1         | _**116**_ <sup>1)</sup>  | 2 bytes  | 0.01 V Unsigned MSB                               | WisBlock RAK4631            | voltage_1          |
-| Humidity                 | 2         | 104                      | 1 byte   | in %RH                                            | WisBlock RAK1901, SensorHub | humidity_2         |
-| Temperature              | 3         | 103                      | 2 bytes  | in °C                                             | WisBlock RAK1901, SensorHub | temperature_3      | 
-| Barometric Pressure      | 4         | 115                      | 2 bytes  | in hPa (mBar)                                     | WisBlock RAK1902, SensorHub | barometer_4        |
-| Illuminance              | 5         | 101                      | 2 bytes  | 1 lux unsigned                                    | WisBlock RAK1903            | illuminance_5      |
-| Humidity 2               | 6         | 104                      | 1 byte   | in %RH                                            | WisBlock RAK1906            | humidity_6         |
-| Temperature 2            | 7         | 103                      | 2 bytes  | in °C                                             | WisBlock RAK1906            | temperature_7      | 
-| Barometric Pressure 2    | 8         | 115                      | 2 bytes  | in hPa (mBar)                                     | WisBlock RAK1906            | barometer_8        |
-| Gas Resistance 2         | 9         | 2                        | 2 bytes  | 0.01 signed (kOhm)                                | WisBlock RAK1906            | analog_9           |
-| GNSS stand. resolution   | 10        | 136                      | 9 bytes  | 3 byte lon/lat 0.0001 °, 3 bytes alt 0.01 meter   | WisBlock RAK1910, RAK12500  | gps_10             |
-| GNSS enhanced resolution | 10        | _**137**_ <sup>2)</sup>  | 11 bytes | 4 byte lon/lat 0.000001 °, 3 bytes alt 0.01 meter | WisBlock RAK1910, RAK12500  | gps_10             |
-| Soil Temperature         | 11        | 103                      | 2 bytes  | in °C                                             | WisBlock RAK12023/RAK12035  | temperature_11     |
-| Soil Humidity            | 12        | 104                      | 1 byte   | in %RH                                            | WisBlock RAK12023/RAK12035  | humidity_12        |
-| Soil Humidity Raw        | 13        | 2                        | 2 bytes  | 0.01 signed                                       | WisBlock RAK12023/RAK12035  | analog_in_13       |
-| Soil Data Valid          | 14        | 102                      | 1 byte   | bool                                              | WisBlock RAK12023/RAK12035  | presence_14        |
-| Illuminance 2            | 15        | 101                      | 2 bytes  | 1 lux unsigned                                    | WisBlock RAK12010           | illuminance_15     |
-| VOC                      | 16        | _**138**_ <sup>2)</sup>  | 2 bytes  | VOC index                                         | WisBlock RAK12047           | voc_16             |
-| MQ2 Gas                  | 17        | 2                        | 2 bytes  | 0.01 signed                                       | WisBlock RAK12004           | analog_in_17       |
-| MQ2 Gas Percentage       | 18        | _**120**_ <sup>1)</sup>  | 1 byte   | 1-100% unsigned                                   | WisBlock RAK12004           | percentage_18      |
-| MG812 Gas                | 19        | 2                        | 2 bytes  | 0.01 signed                                       | WisBlock RAK12008           | analog_in_19       |
-| MG812 Gas Percentage     | 20        | _**120**_ <sup>1)</sup>  | 1 byte   | 1-100% unsigned                                   | WisBlock RAK12008           | percentage_20      |
-| MQ3 Alcohol Gas          | 21        | 2                        | 2 bytes  | 0.01 signed                                       | WisBlock RAK12009           | analog_in_21       |
-| MQ3 Alcohol Gas Perc.    | 22        | _**120**_ <sup>1)</sup>  | 1 byte   | 1-100% unsigned                                   | WisBlock RAK12009           | percentage_22      |
-| ToF distance             | 23        | 2                        | 2 bytes  | 0.01 signed                                       | WisBlock RAK12014           | analog_in_23       |
-| ToF Data Valid           | 24        | 102                      | 1 byte   | bool                                              | WisBlock RAK12014           | presence_24        |
-| Gyro triggered           | 25        | _**134**_ <sup>1)</sup>  | 6 bytes  | 2 bytes per axis, 0.01 °/s                        | WisBlock RAK12025           | gyrometer_25       |
-| Gesture detected         | 26        | 0                        | 1 byte   | 1 byte with id of gesture                         | WisBlock RAK14008           | digital_in_26      |
-| LTR390 UVI value         | 27        | 2                        | 2 bytes  | 0.01 signed                                       | WisBlock RAK12019           | analog_in_27       | 
-| LTR390 UVS value         | 28        | 101                      | 2 bytes  | 1 lux unsigned                                    | WisBlock RAK12019           | illuminance_28     | 
-| INA219 Current           | 29        | 2                        | 2 bytes  | 0.01 signed                                       | WisBlock RAK16000           | analog_29          | 
-| INA219 Voltage           | 30        | 2                        | 2 bytes  | 0.01 signed                                       | WisBlock RAK16000           | analog_30          | 
-| INA219 Power             | 31        | 2                        | 2 bytes  | 0.01 signed                                       | WisBlock RAK16000           | analog_31          | 
-| Touchpad left            | 32        | 102                      | 1 byte   | bool                                              | WisBlock RAK14002           | presence_32        | 
-| Touchpad middle          | 33        | 102                      | 1 byte   | bool                                              | WisBlock RAK14002           | presence_33        | 
-| Touchpad right           | 34        | 102                      | 1 byte   | bool                                              | WisBlock RAK14002           | presence_34        | 
-| SCD30 CO2 concentration  | 35        | 125                      | 2 bytes  | 1 ppm unsigned                                    | WisBlock RAK12037           | concentration_35   |
-| SCD30 temperature        | 36        | 103                      | 2 bytes  | in °C                                             | WisBlock RAK12037           | temperature_36     |
-| SCD30 humidity           | 37        | 104                      | 1 byte   | in %RH                                            | WisBlock RAK12037           | humidity_37        |
-| MLX90632 sensor temp     | 38        | 103                      | 2 bytes  | in °C                                             | WisBlock RAK12003           | temperature_38     |
-| MLX90632 object temp     | 39        | 103                      | 2 bytes  | in °C                                             | WisBlock RAK12003           | temperature_39     |
-| PM 1.0 value             | 40        | 103                      | 2 bytes  | in ug/m3                                          | WisBlock RAK12039           | voc_40             |
-| PM 2.5 value             | 41        | 103                      | 2 bytes  | in ug/m3                                          | WisBlock RAK12039           | voc_41             |
-| PM 10 value              | 42        | 103                      | 2 bytes  | in ug/m3                                          | WisBlock RAK12039           | voc_42             |
-| Earthquake event         | 43        | 102                      | 1 byte   | bool                                              | WisBlock RAK12027           | presence_43        |
-| Earthquake SI value      | 44        | 2                        | 2 bytes  | analog 10 * m/s                                   | WisBlock RAK12027           | analog_44          |
-| Earthquake PGA value     | 45        | 2                        | 2 bytes  | analog 10 * m/s2                                  | WisBlock RAK12027           | analog_45          |
-| Earthquake SHUTOFF alert | 46        | 102                      | 1 byte   | bool                                              | WisBlock RAK12027           | presence_46        |
-| LPP_CHANNEL_EQ_COLLAPSE  | 47        | 102                      | 1 byte   | bool                                              | WisBlock RAK12027           | presence_47        |
-| Switch Status            | 48        | 102                      | 1 byte   | bool                                              | WisBlock RAK13011           | presence_48        |
-| SensorHub Wind Speed     | 49        | _**190**_ <sup>1)</sup>  | 2 byte   | 0.01 m/s                                          | SensorHub RK900-09          | wind_speed_49      |
-| SensorHub Wind Direction | 50        | _**191**_ <sup>1)</sup>  | 2 byte   | 1º                                                | SensorHub RK900-09          | wind_direction_50  |
-| Audio level A weighting  | 51        | 2                        | 2 bytes  | 0.01 dB                                           | WisBlock Audio              | analog_51          |
-| Audio level C weighting  | 52        | 2                        | 2 bytes  | 0.01 dB                                           | WisBlock Audio              | analog_52          |
-| Audio alarm              | 53        | 102                      | 1 bytes  | bool                                              | WisBlock Audio              | presence_53        |
-| Detected sound type      | 54        | 1                        | 1 bytes  | 0 - 255                                           | WisBlock Audio              | digital_out_54     |
+| Data                         | Channel # | Channel ID               | Length   | Comment                                           | Device                      | Decoded Field Name |
+| --                           | --        | --                       | --       | --                                                | --                          | --                 |
+| Battery value                | 1         | _**116**_ <sup>1)</sup>  | 2 bytes  | 0.01 V Unsigned MSB                               | WisBlock RAK4631            | voltage_1          |
+| Humidity                     | 2         | 104                      | 1 byte   | in %RH                                            | WisBlock RAK1901, SensorHub | humidity_2         |
+| Temperature                  | 3         | 103                      | 2 bytes  | in °C                                             | WisBlock RAK1901, SensorHub | temperature_3      | 
+| Barometric Pressure          | 4         | 115                      | 2 bytes  | in hPa (mBar)                                     | WisBlock RAK1902, SensorHub | barometer_4        |
+| Illuminance                  | 5         | 101                      | 2 bytes  | 1 lux unsigned                                    | WisBlock RAK1903            | illuminance_5      |
+| Humidity 2                   | 6         | 104                      | 1 byte   | in %RH                                            | WisBlock RAK1906            | humidity_6         |
+| Temperature 2                | 7         | 103                      | 2 bytes  | in °C                                             | WisBlock RAK1906            | temperature_7      | 
+| Barometric Pressure 2        | 8         | 115                      | 2 bytes  | in hPa (mBar)                                     | WisBlock RAK1906            | barometer_8        |
+| Gas Resistance 2             | 9         | 2                        | 2 bytes  | 0.01 signed (kOhm)                                | WisBlock RAK1906            | analog_9           |
+| GNSS stand. resolution       | 10        | 136                      | 9 bytes  | 3 byte lon/lat 0.0001 °, 3 bytes alt 0.01 meter   | WisBlock RAK1910, RAK12500  | gps_10             |
+| GNSS enhanced resolution     | 10        | _**137**_ <sup>2)</sup>  | 11 bytes | 4 byte lon/lat 0.000001 °, 3 bytes alt 0.01 meter | WisBlock RAK1910, RAK12500  | gps_10             |
+| Soil Temperature             | 11        | 103                      | 2 bytes  | in °C                                             | WisBlock RAK12023/RAK12035  | temperature_11     |
+| Soil Humidity                | 12        | 104                      | 1 byte   | in %RH                                            | WisBlock RAK12023/RAK12035  | humidity_12        |
+| Soil Humidity Raw            | 13        | 2                        | 2 bytes  | 0.01 signed                                       | WisBlock RAK12023/RAK12035  | analog_in_13       |
+| Soil Data Valid              | 14        | 102                      | 1 byte   | bool                                              | WisBlock RAK12023/RAK12035  | presence_14        |
+| Illuminance 2                | 15        | 101                      | 2 bytes  | 1 lux unsigned                                    | WisBlock RAK12010           | illuminance_15     |
+| VOC                          | 16        | _**138**_ <sup>2)</sup>  | 2 bytes  | VOC index                                         | WisBlock RAK12047           | voc_16             |
+| MQ2 Gas                      | 17        | 2                        | 2 bytes  | 0.01 signed                                       | WisBlock RAK12004           | analog_in_17       |
+| MQ2 Gas Percentage           | 18        | _**120**_ <sup>1)</sup>  | 1 byte   | 1-100% unsigned                                   | WisBlock RAK12004           | percentage_18      |
+| MG812 Gas                    | 19        | 2                        | 2 bytes  | 0.01 signed                                       | WisBlock RAK12008           | analog_in_19       |
+| MG812 Gas Percentage         | 20        | _**120**_ <sup>1)</sup>  | 1 byte   | 1-100% unsigned                                   | WisBlock RAK12008           | percentage_20      |
+| MQ3 Alcohol Gas              | 21        | 2                        | 2 bytes  | 0.01 signed                                       | WisBlock RAK12009           | analog_in_21       |
+| MQ3 Alcohol Gas Perc.        | 22        | _**120**_ <sup>1)</sup>  | 1 byte   | 1-100% unsigned                                   | WisBlock RAK12009           | percentage_22      |
+| ToF distance                 | 23        | 2                        | 2 bytes  | 0.01 signed                                       | WisBlock RAK12014           | analog_in_23       |
+| ToF Data Valid               | 24        | 102                      | 1 byte   | bool                                              | WisBlock RAK12014           | presence_24        |
+| Gyro triggered               | 25        | _**134**_ <sup>1)</sup>  | 6 bytes  | 2 bytes per axis, 0.01 °/s                        | WisBlock RAK12025           | gyrometer_25       |
+| Gesture detected             | 26        | 0                        | 1 byte   | 1 byte with id of gesture                         | WisBlock RAK14008           | digital_in_26      |
+| LTR390 UVI value             | 27        | 2                        | 2 bytes  | 0.01 signed                                       | WisBlock RAK12019           | analog_in_27       | 
+| LTR390 UVS value             | 28        | 101                      | 2 bytes  | 1 lux unsigned                                    | WisBlock RAK12019           | illuminance_28     | 
+| INA219 Current               | 29        | 2                        | 2 bytes  | 0.01 signed                                       | WisBlock RAK16000           | analog_29          | 
+| INA219 Voltage               | 30        | 2                        | 2 bytes  | 0.01 signed                                       | WisBlock RAK16000           | analog_30          | 
+| INA219 Power                 | 31        | 2                        | 2 bytes  | 0.01 signed                                       | WisBlock RAK16000           | analog_31          | 
+| Touchpad left                | 32        | 102                      | 1 byte   | bool                                              | WisBlock RAK14002           | presence_32        | 
+| Touchpad middle              | 33        | 102                      | 1 byte   | bool                                              | WisBlock RAK14002           | presence_33        | 
+| Touchpad right               | 34        | 102                      | 1 byte   | bool                                              | WisBlock RAK14002           | presence_34        | 
+| SCD30 CO2 concentration      | 35        | 125                      | 2 bytes  | 1 ppm unsigned                                    | WisBlock RAK12037           | concentration_35   |
+| SCD30 temperature            | 36        | 103                      | 2 bytes  | in °C                                             | WisBlock RAK12037           | temperature_36     |
+| SCD30 humidity               | 37        | 104                      | 1 byte   | in %RH                                            | WisBlock RAK12037           | humidity_37        |
+| MLX90632 sensor temp         | 38        | 103                      | 2 bytes  | in °C                                             | WisBlock RAK12003           | temperature_38     |
+| MLX90632 object temp         | 39        | 103                      | 2 bytes  | in °C                                             | WisBlock RAK12003           | temperature_39     |
+| PM 1.0 value                 | 40        | 103                      | 2 bytes  | in ug/m3                                          | WisBlock RAK12039           | voc_40             |
+| PM 2.5 value                 | 41        | 103                      | 2 bytes  | in ug/m3                                          | WisBlock RAK12039           | voc_41             |
+| PM 10 value                  | 42        | 103                      | 2 bytes  | in ug/m3                                          | WisBlock RAK12039           | voc_42             |
+| Earthquake event             | 43        | 102                      | 1 byte   | bool                                              | WisBlock RAK12027           | presence_43        |
+| Earthquake SI value          | 44        | 2                        | 2 bytes  | analog 10 * m/s                                   | WisBlock RAK12027           | analog_44          |
+| Earthquake PGA value         | 45        | 2                        | 2 bytes  | analog 10 * m/s2                                  | WisBlock RAK12027           | analog_45          |
+| Earthquake SHUTOFF alert     | 46        | 102                      | 1 byte   | bool                                              | WisBlock RAK12027           | presence_46        |
+| Earthquake Collapse alert    | 47        | 102                      | 1 byte   | bool                                              | WisBlock RAK12027           | presence_47        |
+| Switch Status                | 48        | 102                      | 1 byte   | bool                                              | WisBlock RAK13011           | presence_48        |
+| SensorHub Wind Speed         | 49        | _**190**_ <sup>1)</sup>  | 2 byte   | 0.01 m/s                                          | SensorHub RK900-09          | wind_speed_49      |
+| SensorHub Wind Direction     | 50        | _**191**_ <sup>1)</sup>  | 2 byte   | 1º                                                | SensorHub RK900-09          | wind_direction_50  |
+| Audio level A weighting      | 51        | 2                        | 2 bytes  | 0.01 dB                                           | WisBlock Audio              | analog_51          |
+| Audio level C weighting      | 52        | 2                        | 2 bytes  | 0.01 dB                                           | WisBlock Audio              | analog_52          |
+| Audio alarm                  | 53        | 102                      | 1 bytes  | bool                                              | WisBlock Audio              | presence_53        |
+| Detected sound type          | 54        | 1                        | 1 bytes  | 0 - 255                                           | WisBlock Audio              | digital_out_54     |
+| SensorHub Soil Moisture      | 55        | 188                      | 2 bytes  | 0.1 % in 0~100% (m3/m3)                           | SensorHub RK500-02          | soil_moist_55      |
+| SensorHub Soil EC            | 56        | 192                      | 2 bytes  | 0.001, mS/cm                                      | SensorHub RK500-02          | soil_ec_56         |
+| SensorHub Soil pH high prec. | 57        | 193                      | 2 bytes  | 0.01 pH                                           | SensorHub RK500-02          | soil_ph_h_57       |
+| SensorHub Soil pH low prec.  | 58        | 194                      | 2 bytes  | 0.1 pH                                            | SensorHub RK500-02          | soil_ph_l_58       |
+| SensorHub Pyranometer        | 59        | 195                      | 2 bytes  | 1 unsigned MSB (W/m2)                             | SensorHub K200-03           | pyranometer_59     |
 
 ### _REMARK_
 Channel ID's marked with <sup>_**1)**_</sup> are extensions to the default Cayenne LPP format and need an extended decoder.    
