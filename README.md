@@ -70,17 +70,18 @@ The content of the packet depends on the WisBlock example or RAKwireless device 
 | Earthquake SHUTOFF alert     | 46        | 102                      | 1 byte   | bool                                              | WisBlock RAK12027           | presence_46        |
 | Earthquake Collapse alert    | 47        | 102                      | 1 byte   | bool                                              | WisBlock RAK12027           | presence_47        |
 | Switch Status                | 48        | 102                      | 1 byte   | bool                                              | WisBlock RAK13011           | presence_48        |
-| SensorHub Wind Speed         | 49        | _**190**_ <sup>1)</sup>  | 2 byte   | 0.01 m/s                                          | SensorHub RK900-09          | wind_speed_49      |
-| SensorHub Wind Direction     | 50        | _**191**_ <sup>1)</sup>  | 2 byte   | 1º                                                | SensorHub RK900-09          | wind_direction_50  |
+| SensorHub Wind Speed         | 49        | _**190**_ <sup>2)</sup>  | 2 byte   | 0.01 m/s                                          | SensorHub RK900-09          | wind_speed_49      |
+| SensorHub Wind Direction     | 50        | _**191**_ <sup>2)</sup>  | 2 byte   | 1º                                                | SensorHub RK900-09          | wind_direction_50  |
 | Audio level A weighting      | 51        | 2                        | 2 bytes  | 0.01 dB                                           | WisBlock Audio              | analog_51          |
 | Audio level C weighting      | 52        | 2                        | 2 bytes  | 0.01 dB                                           | WisBlock Audio              | analog_52          |
 | Audio alarm                  | 53        | 102                      | 1 bytes  | bool                                              | WisBlock Audio              | presence_53        |
 | Detected sound type          | 54        | 1                        | 1 bytes  | 0 - 255                                           | WisBlock Audio              | digital_out_54     |
-| SensorHub Soil Moisture      | 55        | 188                      | 2 bytes  | 0.1 % in 0~100% (m3/m3)                           | SensorHub RK500-02          | soil_moist_55      |
-| SensorHub Soil EC            | 56        | 192                      | 2 bytes  | 0.001, mS/cm                                      | SensorHub RK500-02          | soil_ec_56         |
-| SensorHub Soil pH high prec. | 57        | 193                      | 2 bytes  | 0.01 pH                                           | SensorHub RK500-02          | soil_ph_h_57       |
-| SensorHub Soil pH low prec.  | 58        | 194                      | 2 bytes  | 0.1 pH                                            | SensorHub RK500-02          | soil_ph_l_58       |
-| SensorHub Pyranometer        | 59        | 195                      | 2 bytes  | 1 unsigned MSB (W/m2)                             | SensorHub K200-03           | pyranometer_59     |
+| SensorHub Soil Moisture      | 55        | _**188**_ <sup>2)</sup>  | 2 bytes  | 0.1 % in 0~100% (m3/m3)                           | SensorHub RK500-02          | soil_moist_55      |
+| SensorHub Soil EC            | 56        | _**192**_ <sup>2)</sup>  | 2 bytes  | 0.001, mS/cm                                      | SensorHub RK500-02          | soil_ec_56         |
+| SensorHub Soil pH high prec. | 57        | _**193**_ <sup>2)</sup>  | 2 bytes  | 0.01 pH                                           | SensorHub RK500-02          | soil_ph_h_57       |
+| SensorHub Soil pH low prec.  | 58        | _**194**_ <sup>2)</sup>  | 2 bytes  | 0.1 pH                                            | SensorHub RK500-02          | soil_ph_l_58       |
+| SensorHub Pyranometer        | 59        | _**195**_ <sup>2)</sup>  | 2 bytes  | 1 unsigned MSB (W/m2)                             | SensorHub K200-03           | pyranometer_59     |
+| SensorHub Precise Temperature| 60        | _**112**_ <sup>2)</sup>  | 2 bytes  | 0.1% in %RH                                       | SensorHub RK520-02          | temperature_60     |
 
 ### _REMARK_
 Channel ID's marked with <sup>_**1)**_</sup> are extensions to the default Cayenne LPP format and need an extended decoder.    
@@ -105,65 +106,66 @@ There are two examples, one using the CayenneLPP library and a second example us
 
 ```cpp
 // Cayenne LPP Channel numbers per sensor value
-#define LPP_CHANNEL_BATT 1			   // Base Board
-#define LPP_CHANNEL_HUMID 2			   // RAK1901, SensorHub
-#define LPP_CHANNEL_TEMP 3			   // RAK1901, SensorHub
-#define LPP_CHANNEL_PRESS 4			   // RAK1902, SensorHub
-#define LPP_CHANNEL_LIGHT 5			   // RAK1903
-#define LPP_CHANNEL_HUMID_2 6		   // RAK1906
-#define LPP_CHANNEL_TEMP_2 7		   // RAK1906
-#define LPP_CHANNEL_PRESS_2 8		   // RAK1906
-#define LPP_CHANNEL_GAS_2 9			   // RAK1906
-#define LPP_CHANNEL_GPS 10			   // RAK1910/RAK12500
-#define LPP_CHANNEL_SOIL_TEMP 11	   // RAK12035
-#define LPP_CHANNEL_SOIL_HUMID 12	   // RAK12035
+#define LPP_CHANNEL_BATT 1             // Base Board
+#define LPP_CHANNEL_HUMID 2            // RAK1901, SensorHub
+#define LPP_CHANNEL_TEMP 3             // RAK1901, SensorHub
+#define LPP_CHANNEL_PRESS 4            // RAK1902, SensorHub
+#define LPP_CHANNEL_LIGHT 5            // RAK1903
+#define LPP_CHANNEL_HUMID_2 6          // RAK1906
+#define LPP_CHANNEL_TEMP_2 7           // RAK1906
+#define LPP_CHANNEL_PRESS_2 8          // RAK1906
+#define LPP_CHANNEL_GAS_2 9            // RAK1906
+#define LPP_CHANNEL_GPS 10             // RAK1910/RAK12500
+#define LPP_CHANNEL_SOIL_TEMP 11       // RAK12035
+#define LPP_CHANNEL_SOIL_HUMID 12      // RAK12035
 #define LPP_CHANNEL_SOIL_HUMID_RAW 13  // RAK12035
-#define LPP_CHANNEL_SOIL_VALID 14	   // RAK12035
-#define LPP_CHANNEL_LIGHT2 15		   // RAK12010
-#define LPP_CHANNEL_VOC 16			   // RAK12047
-#define LPP_CHANNEL_GAS 17			   // RAK12004
-#define LPP_CHANNEL_GAS_PERC 18		   // RAK12004
-#define LPP_CHANNEL_CO2 19			   // RAK12008
-#define LPP_CHANNEL_CO2_PERC 20		   // RAK12008
-#define LPP_CHANNEL_ALC 21			   // RAK12009
-#define LPP_CHANNEL_ALC_PERC 22		   // RAK12009
-#define LPP_CHANNEL_TOF 23			   // RAK12014
-#define LPP_CHANNEL_TOF_VALID 24	   // RAK12014
-#define LPP_CHANNEL_GYRO 25			   // RAK12025
-#define LPP_CHANNEL_GESTURE 26		   // RAK14008
-#define LPP_CHANNEL_UVI 27			   // RAK12019
-#define LPP_CHANNEL_UVS 28			   // RAK12019
+#define LPP_CHANNEL_SOIL_VALID 14      // RAK12035
+#define LPP_CHANNEL_LIGHT2 15          // RAK12010
+#define LPP_CHANNEL_VOC 16             // RAK12047
+#define LPP_CHANNEL_GAS 17             // RAK12004
+#define LPP_CHANNEL_GAS_PERC 18        // RAK12004
+#define LPP_CHANNEL_CO2 19             // RAK12008
+#define LPP_CHANNEL_CO2_PERC 20        // RAK12008
+#define LPP_CHANNEL_ALC 21             // RAK12009
+#define LPP_CHANNEL_ALC_PERC 22        // RAK12009
+#define LPP_CHANNEL_TOF 23             // RAK12014
+#define LPP_CHANNEL_TOF_VALID 24       // RAK12014
+#define LPP_CHANNEL_GYRO 25            // RAK12025
+#define LPP_CHANNEL_GESTURE 26         // RAK14008
+#define LPP_CHANNEL_UVI 27             // RAK12019
+#define LPP_CHANNEL_UVS 28             // RAK12019
 #define LPP_CHANNEL_CURRENT_CURRENT 29 // RAK16000
 #define LPP_CHANNEL_CURRENT_VOLTAGE 30 // RAK16000
 #define LPP_CHANNEL_CURRENT_POWER 31   // RAK16000
-#define LPP_CHANNEL_TOUCH_1 32		   // RAK14002
-#define LPP_CHANNEL_TOUCH_2 33		   // RAK14002
-#define LPP_CHANNEL_TOUCH_3 34		   // RAK14002
-#define LPP_CHANNEL_CO2_2 35		   // RAK12037
-#define LPP_CHANNEL_CO2_Temp_2 36	   // RAK12037
-#define LPP_CHANNEL_CO2_HUMID_2 37	   // RAK12037
-#define LPP_CHANNEL_TEMP_3 38		   // RAK12003
-#define LPP_CHANNEL_TEMP_4 39		   // RAK12003
-#define LPP_CHANNEL_PM_1_0 40		   // RAK12039
-#define LPP_CHANNEL_PM_2_5 41		   // RAK12039
-#define LPP_CHANNEL_PM_10_0 42		   // RAK12039
-#define LPP_CHANNEL_EQ_EVENT 43		   // RAK12027
-#define LPP_CHANNEL_EQ_SI 44		   // RAK12027
-#define LPP_CHANNEL_EQ_PGA 45		   // RAK12027
-#define LPP_CHANNEL_EQ_SHUTOFF 46	   // RAK12027
-#define LPP_CHANNEL_EQ_COLLAPSE 47	   // RAK12027
-#define LPP_CHANNEL_SWITCH 48		   // RAK13011
-#define LPP_SH_WS 49	               // SensorHub RK900-09
+#define LPP_CHANNEL_TOUCH_1 32         // RAK14002
+#define LPP_CHANNEL_TOUCH_2 33         // RAK14002
+#define LPP_CHANNEL_TOUCH_3 34         // RAK14002
+#define LPP_CHANNEL_CO2_2 35           // RAK12037
+#define LPP_CHANNEL_CO2_Temp_2 36      // RAK12037
+#define LPP_CHANNEL_CO2_HUMID_2 37     // RAK12037
+#define LPP_CHANNEL_TEMP_3 38          // RAK12003
+#define LPP_CHANNEL_TEMP_4 39          // RAK12003
+#define LPP_CHANNEL_PM_1_0 40          // RAK12039
+#define LPP_CHANNEL_PM_2_5 41          // RAK12039
+#define LPP_CHANNEL_PM_10_0 42         // RAK12039
+#define LPP_CHANNEL_EQ_EVENT 43        // RAK12027
+#define LPP_CHANNEL_EQ_SI 44           // RAK12027
+#define LPP_CHANNEL_EQ_PGA 45          // RAK12027
+#define LPP_CHANNEL_EQ_SHUTOFF 46      // RAK12027
+#define LPP_CHANNEL_EQ_COLLAPSE 47     // RAK12027
+#define LPP_CHANNEL_SWITCH 48          // RAK13011
+#define LPP_SH_WS 49                   // SensorHub RK900-09
 #define LPP_SH_WD 50                   // SensorHub RK900-09
 #define LPP_CHANNEL_AUDIO_LEVEL_A 51   // WisBlock Audio
 #define LPP_CHANNEL_AUDIO_LEVEL_C 52   // WisBlock Audio
-#define LPP_CHANNEL_AUDIO_ALARM 53	   // WisBlock Audio
-#define LPP_CHANNEL_AUDIO_TYPE 54	   // WisBlock Audio
-#define LPP_SH_SOIL_MOIST 55		   // SensorHub RK500-02
-#define LPP_SH_EC 56				   // SensorHub RK500-02
-#define LPP_SH_PH_H 57				   // SensorHub RK500-02
-#define LPP_SH_PH_L 58				   // SensorHub RK500-02
-#define LPP_SH_PYRANO 59			   // SensorHub RK200-03
+#define LPP_CHANNEL_AUDIO_ALARM 53     // WisBlock Audio
+#define LPP_CHANNEL_AUDIO_TYPE 54      // WisBlock Audio
+#define LPP_SH_SOIL_MOIST 55           // SensorHub RK500-02
+#define LPP_SH_EC 56                   // SensorHub RK500-02
+#define LPP_SH_PH_H 57                 // SensorHub RK500-02
+#define LPP_SH_PH_L 58                 // SensorHub RK500-02
+#define LPP_SH_PYRANO 59               // SensorHub RK200-03
+#define LPP_SH_HUMID_PREC 60           // SensorHub RK520-02
 
 ```
 
@@ -179,48 +181,48 @@ CayenneLPP g_solution_data(255);
 
 void setup()
 {
-	// Initialize Serial for debug output
-	Serial.begin(115200);
+   // Initialize Serial for debug output
+   Serial.begin(115200);
 
-	time_t serial_timeout = millis();
-	// On nRF52840 the USB serial is not available immediately
-	while (!Serial)
-	{
-		if ((millis() - serial_timeout) < 5000)
-		{
-			delay(100);
-			digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
-		}
-		else
-		{
-			break;
-		}
-	}
+   time_t serial_timeout = millis();
+   // On nRF52840 the USB serial is not available immediately
+   while (!Serial)
+   {
+      if ((millis() - serial_timeout) < 5000)
+      {
+         delay(100);
+         digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
+      }
+      else
+      {
+         break;
+      }
+   }
 
-	Serial.println("RAKwireless Sensor Node");
-	Serial.println("-----------------------");
+   Serial.println("RAKwireless Sensor Node");
+   Serial.println("-----------------------");
 }
 
 void loop()
 {
-	// Clear payload
-	g_solution_data.reset();
+   // Clear payload
+   g_solution_data.reset();
 
-	// Add humidity data
-	g_solution_data.addRelativeHumidity(LPP_CHANNEL_HUMID, 32.5);
-	// Add temperature data
-	g_solution_data.addTemperature(LPP_CHANNEL_TEMP, 16.9);
-	// Add barometric pressure data
-	g_solution_data.addBarometricPressure(LPP_CHANNEL_PRESS, 1024);
+   // Add humidity data
+   g_solution_data.addRelativeHumidity(LPP_CHANNEL_HUMID, 32.5);
+   // Add temperature data
+   g_solution_data.addTemperature(LPP_CHANNEL_TEMP, 16.9);
+   // Add barometric pressure data
+   g_solution_data.addBarometricPressure(LPP_CHANNEL_PRESS, 1024);
 
-	// Send routines need pointer to the payload and payload size
-	// This can be obtained with g_solution_data.getSize() and g_solution_data.getBuffer()
+   // Send routines need pointer to the payload and payload size
+   // This can be obtained with g_solution_data.getSize() and g_solution_data.getBuffer()
 
-	// Send the packet
-	api.lorawan.send(g_solution_data.getSize(), g_solution_data.getBuffer());
+   // Send the packet
+   api.lorawan.send(g_solution_data.getSize(), g_solution_data.getBuffer());
 
-	// Sleep for 60 seconds
-	api.system.sleep.all(60000);
+   // Sleep for 60 seconds
+   api.system.sleep.all(60000);
 }
 ```
 
@@ -236,46 +238,46 @@ WisCayenne g_solution_data(255);
 
 void setup()
 {
-	// Initialize Serial for debug output
-	Serial.begin(115200);
+   // Initialize Serial for debug output
+   Serial.begin(115200);
 
-	time_t serial_timeout = millis();
-	// On nRF52840 the USB serial is not available immediately
-	while (!Serial)
-	{
-		if ((millis() - serial_timeout) < 5000)
-		{
-			delay(100);
-			digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
-		}
-		else
-		{
-			break;
-		}
-	}
+   time_t serial_timeout = millis();
+   // On nRF52840 the USB serial is not available immediately
+   while (!Serial)
+   {
+      if ((millis() - serial_timeout) < 5000)
+      {
+         delay(100);
+         digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
+      }
+      else
+      {
+         break;
+      }
+   }
 
-	Serial.println("RAKwireless Sensor Node");
-	Serial.println("-----------------------");
+   Serial.println("RAKwireless Sensor Node");
+   Serial.println("-----------------------");
 }
 
 void loop()
 {
-	// Clear payload
-	g_solution_data.reset();
+   // Clear payload
+   g_solution_data.reset();
 
-	// Add VOC data
-	g_solution_data.addVoc_index(LPP_CHANNEL_VOC, 30);
-	// Add location data in extended precision
-	g_solution_data.addGNSS_6(LPP_CHANNEL_GPS, 144213730, 1210069140, 30);
+   // Add VOC data
+   g_solution_data.addVoc_index(LPP_CHANNEL_VOC, 30);
+   // Add location data in extended precision
+   g_solution_data.addGNSS_6(LPP_CHANNEL_GPS, 144213730, 1210069140, 30);
 
-	// Send routines need pointer to the payload and payload size
-	// This can be obtained with g_solution_data.getSize() and g_solution_data.getBuffer()
+   // Send routines need pointer to the payload and payload size
+   // This can be obtained with g_solution_data.getSize() and g_solution_data.getBuffer()
 
-	// Send the packet
-	api.lorawan.send(g_solution_data.getSize(), g_solution_data.getBuffer());
+   // Send the packet
+   api.lorawan.send(g_solution_data.getSize(), g_solution_data.getBuffer());
 
-	// Sleep for 60 seconds
-	api.system.sleep.all(60000);
+   // Sleep for 60 seconds
+   api.system.sleep.all(60000);
 }
 ```
 ----

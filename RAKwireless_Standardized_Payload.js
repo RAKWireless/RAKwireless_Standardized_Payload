@@ -50,6 +50,7 @@
  *  Soil pH high prec.  3393    193     C1      2           0.01 pH
  *  Soil pH low prec.   3394    194     C2      2           0.1 pH
  *  Pyranometer         3395    195     C3      2           1 unsigned MSB (W/m2)
+ *  Precise Humidity    3312    112     70      2           0.1 %RH
  * 
  */
 
@@ -67,6 +68,7 @@ function lppDecode(bytes) {
 		102: { 'size': 1, 'name': 'presence', 'signed': false, 'divisor': 1 },
 		103: { 'size': 2, 'name': 'temperature', 'signed': true, 'divisor': 10 },
 		104: { 'size': 1, 'name': 'humidity', 'signed': false, 'divisor': 2 },
+		112: { 'size': 2, 'name': 'humidity_prec', 'signed': true, 'divisor': 10 },
 		113: { 'size': 6, 'name': 'accelerometer', 'signed': true, 'divisor': 1000 },
 		115: { 'size': 2, 'name': 'barometer', 'signed': false, 'divisor': 10 },
 		116: { 'size': 2, 'name': 'voltage', 'signed': false, 'divisor': 100 },
