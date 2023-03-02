@@ -150,10 +150,10 @@ function Decoder(bytes, fPort) {
 
 			// Calculate distance
 			var new_distance = distance(gw_lat[idx], gw_long[idx], decoded.latitude, decoded.longitude);
-			if ((new_distance < decoded.minDistance) || (decoded.minDistance == 0)) {
+			if ((new_distance * 1000 < decoded.minDistance) || (decoded.minDistance == 0)) {
 				decoded.minDistance = new_distance * 1000;
 			}
-			if ((new_distance > decoded.maxDistance) || (decoded.maxDistance == 0)) {
+			if ((new_distance * 1000 > decoded.maxDistance) || (decoded.maxDistance == 0)) {
 				decoded.maxDistance = new_distance * 1000;
 			}
 		}
