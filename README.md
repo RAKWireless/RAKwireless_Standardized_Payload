@@ -82,6 +82,9 @@ The content of the packet depends on the WisBlock example or RAKwireless device 
 | SensorHub Soil pH low prec.  | 58        | _**194**_ <sup>2)</sup>  | 2 bytes  | 0.1 pH                                            | SensorHub RK500-02          | soil_ph_l_58       |
 | SensorHub Pyranometer        | 59        | _**195**_ <sup>2)</sup>  | 2 bytes  | 1 unsigned MSB (W/m2)                             | SensorHub K200-03           | pyranometer_59     |
 | SensorHub Precise Temperature| 60        | _**112**_ <sup>2)</sup>  | 2 bytes  | 0.1% in %RH                                       | SensorHub RK520-02          | temperature_60     |
+| Water level         | 61        | 2                       | 2 bytes | cm                  | RAK12059         | analog_61          |
+| Low level alert     | 62        | 102                     | 1 bytes | bool             | RAK12059         | presence_62        |
+| Overflow alert      | 63        | 102                     | 1 bytes | bool             | RAK12059         | presence_63        |
 
 ### _REMARK_
 Channel ID's marked with <sup>_**1)**_</sup> are extensions to the default Cayenne LPP format and need an extended decoder.    
@@ -166,7 +169,9 @@ There are two examples, one using the CayenneLPP library and a second example us
 #define LPP_SH_PH_L 58                 // SensorHub RK500-02
 #define LPP_SH_PYRANO 59               // SensorHub RK200-03
 #define LPP_SH_HUMID_PREC 60           // SensorHub RK520-02
-
+#define LPP_CHANNEL_WLEVEL 61          // RAK12059
+#define LPP_CHANNEL_WL_LOW 62          // RAK12059
+#define LPP_CHANNEL_WL_HIGH 63         // RAK12059
 ```
 
 ### main.cpp using ElectronicCats CayenneLPP library
