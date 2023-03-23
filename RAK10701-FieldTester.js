@@ -158,50 +158,12 @@ function Decoder(bytes, fPort) {
 			}
 		}
 
-		switch (decoded.num_gw) {
-			case 20:
-				decoded.hotspot_10 = "(" + gw_lat[19] + "," + gw_long[19] + ")";
-			case 19:
-				decoded.hotspot_09 = "(" + gw_lat[18] + "," + gw_long[18] + ")";
-			case 18:
-				decoded.hotspot_08 = "(" + gw_lat[17] + "," + gw_long[17] + ")";
-			case 17:
-				decoded.hotspot_07 = "(" + gw_lat[16] + "," + gw_long[16] + ")";
-			case 16:
-				decoded.hotspot_06 = "(" + gw_lat[15] + "," + gw_long[15] + ")";
-			case 15:
-				decoded.hotspot_05 = "(" + gw_lat[14] + "," + gw_long[14] + ")";
-			case 14:
-				decoded.hotspot_04 = "(" + gw_lat[13] + "," + gw_long[13] + ")";
-			case 13:
-				decoded.hotspot_03 = "(" + gw_lat[12] + "," + gw_long[12] + ")";
-			case 12:
-				decoded.hotspot_02 = "(" + gw_lat[11] + "," + gw_long[11] + ")";
-			case 11:
-				decoded.hotspot_01 = "(" + gw_lat[10] + "," + gw_long[10] + ")";
-			case 10:
-				decoded.hotspot_10 = "(" + gw_lat[9] + "," + gw_long[9] + ")";
-			case 9:
-				decoded.hotspot_09 = "(" + gw_lat[8] + "," + gw_long[8] + ")";
-			case 8:
-				decoded.hotspot_08 = "(" + gw_lat[7] + "," + gw_long[7] + ")";
-			case 7:
-				decoded.hotspot_07 = "(" + gw_lat[6] + "," + gw_long[6] + ")";
-			case 6:
-				decoded.hotspot_06 = "(" + gw_lat[5] + "," + gw_long[5] + ")";
-			case 5:
-				decoded.hotspot_05 = "(" + gw_lat[4] + "," + gw_long[4] + ")";
-			case 4:
-				decoded.hotspot_04 = "(" + gw_lat[3] + "," + gw_long[3] + ")";
-			case 3:
-				decoded.hotspot_03 = "(" + gw_lat[2] + "," + gw_long[2] + ")";
-			case 2:
-				decoded.hotspot_02 = "(" + gw_lat[1] + "," + gw_long[1] + ")";
-			case 1:
-				decoded.hotspot_01 = "(" + gw_lat[0] + "," + gw_long[0] + ")";
-			default:
-				break;
+		const numGateways = decoded.num_gw;
+		for (let i = 0; i < numGateways; i++) {
+  		const index = numGateways - i - 1;
+ 		 decoded[`hotspot_${index.toString().padStart(2, '0')}`] = `(${gw_lat[index]},${gw_long[index]})`;
 		}
+	
 
 		decoded.maxMod = parseInt((decoded.maxDistance / 250), 10);
 		decoded.minMod = parseInt((decoded.minDistance / 250), 10);
