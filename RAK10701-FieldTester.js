@@ -158,10 +158,10 @@ function Decoder(bytes, fPort) {
 			}
 		}
 
-		const numGateways = decoded.num_gw;
-		for (let i = 0; i < numGateways; i++) {
-  		const index = numGateways - i - 1;
- 		 decoded[`hotspot_${index.toString().padStart(2, '0')}`] = `(${gw_lat[index]},${gw_long[index]})`;
+		var num_gateways = decoded.num_gw;
+		for (idx = 0; idx < num_gateways; idx++) {
+		var index = num_gateways - idx - 1;
+		decoded["hotspot_${index.toString().padStart(2, '0')}"] = "(${gw_lat[index]},${gw_long[index]})";
 		}
 	
 
