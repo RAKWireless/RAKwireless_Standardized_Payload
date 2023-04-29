@@ -215,7 +215,7 @@ function Decoder(bytes, fport) {
 	return response;
 }
 
-// For Chirpstack
+// For Chirpstack V3
 function Decode(fPort, bytes, variables) {
 
 	// bytes = input.bytes;
@@ -227,4 +227,11 @@ function Decode(fPort, bytes, variables) {
 		response[field['name'] + '_' + field['channel']] = field['value'];
 	});
 	return response;
+}
+
+// Chirpstack v3 to v4 compatibility wrapper
+function decodeUplink(input) {
+	return {
+		data: Decode(input.fPort, input.bytes, input.variables)
+	};
 }
