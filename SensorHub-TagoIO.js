@@ -1,5 +1,9 @@
 // Add ignorable variables in this array.
+const ignore_vars = ['rx_0_gateway_id', 'rx_0_rssi', 'rx_0_lorasnr', 'rx_0_location', 'rx_0_fine_timestamp_type', 'rx_0_context', 'frequency', 'modulation', 'bandwidth', 'spreading_factor', 'code_rate', 'polarization_inversion', 'fCnt', 'adr', 'confirmedUplink', 'publishedAt', 'deviceProfileID', 'deviceProfileName', 'objectJSON', 'application_id', 'application_name', 'device_name', 'device_eui', 'dev_addr'];
 const ignore_vars2 = ['payload'];
+
+// Remove unwanted variables.
+payload = payload.filter(x => !ignore_vars.includes(x.variable));
 
 /**
  * @reference https://github.com/myDevicesIoT/cayenne-docs/blob/master/docs/LORA.md
