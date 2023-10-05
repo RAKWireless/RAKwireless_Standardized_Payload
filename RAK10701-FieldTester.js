@@ -88,6 +88,12 @@ function Decoder(bytes, fPort) {
 			server_type = 3;
 			decoded.is_chirpstack = 1;
 		}
+		//Check if the payload comes from LORIOT
+		else if (typeof (rawPayload.cmd) != "undefined") {
+			console.log("Found LORIOT format");
+			server_type = 4;
+			decoded.is_chirpstack = 1;
+		}	
 		else {
 			console.log("Unknown raw format");
 		}
@@ -136,6 +142,12 @@ function Decoder(bytes, fPort) {
 				case 3:
 					gw_lat[idx] = rawPayload.rxInfo[idx].location.latitude;
 					gw_long[idx] = rawPayload.rxInfo[idx].location.longitude;
+					break;
+
+				// LORIOT
+				case 4:
+					gw_lat[idx] = rawPayload.gws[0].lat;
+					gw_long[idx] = rawPayload.gws[0].lon;
 					break;
 				default:
 					console.log("Unknown LNS");
