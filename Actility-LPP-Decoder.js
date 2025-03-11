@@ -111,15 +111,84 @@ function lppDecode(bytes) {
 		var s_value = 0;
 		var type = sensor_types[s_type];
 		switch (s_type) {
-			case 113: // Accelerometer
+			case 113:   // Accelerometer
+			case 134:   // Gyrometer
 				s_value = {
 					'x': arrayToDecimal(bytes.slice(i + 0, i + 2), type.signed, type.divisor),
 					'y': arrayToDecimal(bytes.slice(i + 2, i + 4), type.signed, type.divisor),
 					'z': arrayToDecimal(bytes.slice(i + 4, i + 6), type.signed, type.divisor)
 				};
 				break;
-
-			default: // All other sensor types
+			case 136:   // GPS Location
+				s_value = {
+					'latitude': arrayToDecimal(bytes.slice(i + 0, i + 3), type.signed, type.divisor[0]),
+					'longitude': arrayToDecimal(bytes.slice(i + 3, i + 6), type.signed, type.divisor[1]),
+					'altitude': arrayToDecimal(bytes.slice(i + 6, i + 9), type.signed, type.divisor[2])
+				};
+				sensors.push({
+					'channel': s_no,
+					'type': s_type,
+					'name': 'location',
+					'value': "(" + s_value.latitude + "," + s_value.longitude + ")"
+				});
+				sensors.push({
+					'channel': s_no,
+					'type': s_type,
+					'name': 'latitude',
+					'value': s_value.latitude
+				});
+				sensors.push({
+					'channel': s_no,
+					'type': s_type,
+					'name': 'longitude',
+					'value': s_value.longitude
+				});
+				sensors.push({
+					'channel': s_no,
+					'type': s_type,
+					'name': 'altitude',
+					'value': s_value.altitude
+				});
+				break;
+			case 137:   // Precise GPS Location
+				s_value = {
+					'latitude': arrayToDecimal(bytes.slice(i + 0, i + 4), type.signed, type.divisor[0]),
+					'longitude': arrayToDecimal(bytes.slice(i + 4, i + 8), type.signed, type.divisor[1]),
+					'altitude': arrayToDecimal(bytes.slice(i + 8, i + 11), type.signed, type.divisor[2])
+				};
+				sensors.push({
+					'channel': s_no,
+					'type': s_type,
+					'name': 'location',
+					'value': "(" + s_value.latitude + "," + s_value.longitude + ")"
+				});
+				sensors.push({
+					'channel': s_no,
+					'type': s_type,
+					'name': 'latitude',
+					'value': s_value.latitude
+				});
+				sensors.push({
+					'channel': s_no,
+					'type': s_type,
+					'name': 'longitude',
+					'value': s_value.longitude
+				});
+				sensors.push({
+					'channel': s_no,
+					'type': s_type,
+					'name': 'altitude',
+					'value': s_value.altitude
+				});
+				break;
+			case 135:   // Colour
+				s_value = {
+					'r': arrayToDecimal(bytes.slice(i + 0, i + 1), type.signed, type.divisor),
+					'g': arrayToDecimal(bytes.slice(i + 1, i + 2), type.signed, type.divisor),
+					'b': arrayToDecimal(bytes.slice(i + 2, i + 3), type.signed, type.divisor)
+				};
+				break;
+			default:   // All other sensor types
 				s_value = arrayToDecimal(bytes.slice(i, i + type.size), type.signed, type.divisor);
 				break;
 		}
