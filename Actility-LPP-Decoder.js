@@ -20,6 +20,9 @@ function lppDecode(bytes) {
 		24: { 'size': 2, 'name': 'no3', 'signed': false, 'divisor': 10 },						// 18	NO3 0.1ppm
 		25: { 'size': 2, 'name': 'nh4+', 'signed': false, 'divisor': 100 },						// 19	NH4+ 0.01ppm
 		26: { 'size': 2, 'name': 'bod', 'signed': false, 'divisor': 1 },						// 1A	BOD 1mg/L
+		27: { 'size': 2, 'name': 'accel-x', 'signed': true, 'divisor': 1 },						// 1B	Accelerometer x-axis 1mG 2000 ... -2000
+		28: { 'size': 2, 'name': 'accel-y', 'signed': true, 'divisor': 1 },						// 1C	Accelerometer y-axis 1mG 2000 ... -2000
+		29: { 'size': 2, 'name': 'accel-z', 'signed': true, 'divisor': 1 },						// 1C	Accelerometer z-axis 1mG 2000 ... -2000
 		100: { 'size': 4, 'name': 'generic', 'signed': false, 'divisor': 1 },					// 64	Generic Value Min: 0
 		101: { 'size': 2, 'name': 'illuminance', 'signed': false, 'divisor': 1 },				// 65	Illuminance	1Lux
 		102: { 'size': 1, 'name': 'presence', 'signed': false, 'divisor': 1 },					// 66	Presence (Yes/No)
@@ -63,6 +66,7 @@ function lppDecode(bytes) {
 		184: { 'size': 1, 'name': 'capacity_batt', 'signed': false, 'divisor': 1 },				// B8	Battery Capacity %
 		185: { 'size': 2, 'name': 'dc_current_batt', 'signed': false, 'divisor': 100 },			// B9	Battery Charging Current 0.01A
 		186: { 'size': 2, 'name': 'dc_voltage_batt', 'signed': false, 'divisor': 100 },			// BA	Battery Voltage 0.01V
+		187: { 'size': 4, 'name': 'hub_voltage', 'signed': false, 'divisor': 100 },				// BB	SensorHub voltage 0.01V
 		188: { 'size': 2, 'name': 'soil_moist', 'signed': false, 'divisor': 10 },				// BC	Moisture 0.1%
 		190: { 'size': 2, 'name': 'wind_speed', 'signed': false, 'divisor': 100 },				// BE	Wind Speed 0.01m/s
 		191: { 'size': 2, 'name': 'wind_direction', 'signed': false, 'divisor': 1 },			// BF	Wind Direction 1°, in 0~359°
