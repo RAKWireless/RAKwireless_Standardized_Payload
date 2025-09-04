@@ -44,7 +44,7 @@ function Decode(fPort, bytes) {
 			decoded.lat = (((bytes[14] << 24) | (bytes[15] << 16) | (bytes[16] << 8) | bytes[17]) * 0.000001).toFixed(6);
 			decoded.acc = bytes[18];
 			decoded.gps_start = bytes[19];
-			decoded.location = "(" + decoded.latitude + "," + decoded.longitude + ")";
+			decoded.location = "(" + decoded.lat + "," + decoded.lng + ")";
 			break;
 		case 0xCC: // SOS 
 			decoded.sos = 1;
@@ -73,4 +73,13 @@ function Decode(fPort, bytes) {
 			break;
 	}
 	return decoded;
+
+}
+
+
+// Chirpstack v3 to v4 compatibility wrapper
+function decodeUplink(input) {
+	return {
+		data: Decode(input.fPort, input.bytes, input.variables)
+	};
 }
